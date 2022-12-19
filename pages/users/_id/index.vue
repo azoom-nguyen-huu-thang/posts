@@ -8,7 +8,7 @@
       <li v-for="pet in pets" :key="pet.id">{{ pet.name }}</li>
     </ul>
     <button @click="addNewPet">Add new pet</button>
-    <button @click="addRandomPet">Add random Petqqqqqqq</button>
+    <button @click="addRandomPet">Add random Pet</button>
   </div>
 </template>
 

@@ -1,4 +1,4 @@
-import { make } from 'vuex-pathify'
+import { commit, make } from 'vuex-pathify'
 import { api } from '../request'
 import pathify from './pathify'
 
@@ -15,8 +15,25 @@ export const mutations = {
 }
 
 export const actions = {
-  async fetchPosts({ options }) {
+  async fetchPosts({ state }, options) {
     const posts = await api.get('posts').json()
     return posts
+  },
+  async createNewPost({ state }, post) {
+    const posts = state.posts
+    await api
+      .post('posts', {
+        json: post,
+      })
+      .json()
+    const newPost = {
+      ...post,
+      id:
+        posts.find(
+          (post) => post.id === Math.max(...posts.map((post) => post.id))
+        ).id + 1,
+    }
+    commit('SET_POSTS', [newPost, ...state.posts])
+    return newPost
   },
 }

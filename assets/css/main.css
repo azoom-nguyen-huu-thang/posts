@@ -14,3 +14,32 @@ a {
 .flex-col {
   flex-direction: column;
 }
+
+.dot {
+  margin: 0 0.2rem;
+}
+
+.mx-auto {
+  margin: 0 auto;
+}
+
+.w-full {
+  width: 100%;
+}
+
+body {
+  font-family: 'Roboto, sans-serif';
+  font-size: 14px;
+}
+
+@media only screen and (min-width: 1920px) {
+  body {
+    font-size: 16px;
+  }
+}
+
+@media only screen and (min-width: 2560px) {
+  body {
+    font-size: 18px;
+  }
+}
