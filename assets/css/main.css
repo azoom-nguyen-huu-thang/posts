@@ -27,6 +27,14 @@ a {
   width: 100%;
 }
 
+.justify-center {
+  justify-content: center;
+}
+
+.items-center {
+  align-items: center;
+}
+
 body {
   font-family: 'Roboto, sans-serif';
   font-size: 14px;
