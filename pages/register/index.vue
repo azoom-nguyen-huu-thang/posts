@@ -1,15 +1,16 @@
 <template>
   <div class="register-page">
     <form class="register-form">
-      <div class="form-group" :class="{ 'form-group--error': $v.name.$error }">
+      <div class="form-group" :class="{ 'form-group -error': $v.name.$error }">
         <label class="label" for="name">Name*</label>
         <input
           id="name"
-          v-model.trim="$v.name.$model"
+          v-model.trim="name"
           class="input"
           :class="{
-            'input--error': $v.name.$error,
+            'input -error': $v.name.$error,
           }"
+          @blur="onInputBlur('name')"
         />
         <div v-if="$v.name.$error" class="error">
           <span v-if="!$v.name.required">Field is required</span>
@@ -18,82 +19,97 @@
           </span>
         </div>
       </div>
-      <div class="form-group" :class="{ 'form-group--error': $v.name.$error }">
+      <div class="form-group" :class="{ 'form-group -error': $v.dob.$error }">
         <label class="label">Date of birth*</label>
         <input
-          v-model.trim="$v.dob.$model"
+          v-model.trim="dob"
           type="date"
           class="input"
           :class="{
-            'input--error': $v.dob.$error,
+            'input -error': $v.dob.$error,
           }"
+          @blur="onInputBlur('dob')"
         />
         <div v-if="$v.dob.$error" class="error">
           <span v-if="!$v.dob.required">Field is required</span>
         </div>
       </div>
-      <div class="form-group" :class="{ 'form-group--error': $v.name.$error }">
+      <div
+        class="form-group"
+        :class="{ 'form-group -error': $v.gender.$error }"
+      >
         <label class="label">Gender*</label>
-        <div class="flex">
+        <div class="input-group">
           <input
             id="male"
-            v-model.trim="$v.gender.$model"
+            v-model.trim="gender"
             type="radio"
             class="input"
             value="Male"
             name="gender"
+            @blur="onInputBlur('gender')"
           />
           <label for="male">Male</label>
           <input
             id="female"
-            v-model.trim="$v.gender.$model"
+            v-model.trim="gender"
             type="radio"
             class="input"
             value="Female"
             name="gender"
             style="margin-left: 1rem"
+            @blur="onInputBlur('gender')"
           />
           <label for="female">Female</label>
         </div>
       </div>
-      <div class="form-group" :class="{ 'form-group--error': $v.name.$error }">
+      <div
+        class="form-group"
+        :class="{ 'form-group -error': $v.address.$error }"
+      >
         <label class="label">Address*</label>
         <input
-          v-model.trim="$v.address.$model"
+          v-model.trim="address"
           type="text"
           class="input"
           :class="{
-            'input--error': $v.address.$error,
+            'input -error': $v.address.$error,
           }"
+          @blur="onInputBlur('address')"
         />
         <div v-if="$v.address.$error" class="error">
           <span v-if="!$v.address.required">Field is required</span>
         </div>
       </div>
-      <div class="form-group" :class="{ 'form-group--error': $v.name.$error }">
+      <div class="form-group" :class="{ 'form-group -error': $v.email.$error }">
         <label class="label">Email*</label>
         <input
-          v-model.trim="$v.email.$model"
+          v-model.trim="email"
           type="text"
           class="input"
           :class="{
-            'input--error': $v.email.$error,
+            'input -error': $v.email.$error,
           }"
+          @blur="onInputBlur('email')"
         />
         <div v-if="$v.email.$error" class="error">
           <span v-if="!$v.email.required">Field is required</span>
           <span v-if="!$v.email.email">Invalid email</span>
         </div>
       </div>
-      <div class="form-group" :class="{ 'form-group--error': $v.name.$error }">
+      <div
+        class="form-group"
+        :class="{ 'form-group -error': $v.graduationDate.$error }"
+      >
         <label class="label">Graduation date</label>
         <input
-          v-model.trim="$v.graduationDate.$model"
+          v-model.trim="graduationDate"
           type="date"
           class="input"
           :class="{
-            'input--error': $v.graduationDate.$error,
+            'input -error': $v.graduationDate.$error,
           }"
+          @blur="onInputBlur('graduationDate')"
         />
         <div v-if="$v.graduationDate.$error" class="error">
           <span v-if="!$v.graduationDate.isValid">
@@ -101,15 +117,19 @@
           </span>
         </div>
       </div>
-      <div class="form-group" :class="{ 'form-group--error': $v.name.$error }">
+      <div
+        class="form-group"
+        :class="{ 'form-group -error': $v.phoneNumber.$error }"
+      >
         <label class="label">Phone number*</label>
         <input
-          v-model.trim="$v.phoneNumber.$model"
+          v-model.trim="phoneNumber"
           type="tel"
           class="input"
           :class="{
-            'input--error': $v.phoneNumber.$error,
+            'input -error': $v.phoneNumber.$error,
           }"
+          @blur="onInputBlur('phoneNumber')"
         />
         <div v-if="$v.phoneNumber.$error" class="error">
           <span v-if="!$v.phoneNumber.required"> Field is required </span>
@@ -118,15 +138,19 @@
           </div>
         </div>
       </div>
-      <div class="form-group" :class="{ 'form-group--error': $v.name.$error }">
+      <div
+        class="form-group"
+        :class="{ 'form-group -error': $v.password.$error }"
+      >
         <label class="label">Password *</label>
         <input
-          v-model.trim="$v.password.$model"
+          v-model.trim="password"
           type="password"
           class="input"
           :class="{
-            'input--error': $v.password.$error,
+            'input -error': $v.password.$error,
           }"
+          @blur="onInputBlur('password')"
         />
         <div v-if="$v.password.$error" class="error">
           <span v-if="!$v.password.required">Field is required</span>
@@ -140,15 +164,19 @@
           </span>
         </div>
       </div>
-      <div class="form-group" :class="{ 'form-group--error': $v.name.$error }">
+      <div
+        class="form-group"
+        :class="{ 'form-group -error': $v.rePassword.$error }"
+      >
         <label class="label">Confirm password *</label>
         <input
-          v-model.trim="$v.rePassword.$model"
+          v-model.trim="rePassword"
           type="password"
           class="input"
           :class="{
-            'input--error': $v.rePassword.$error,
+            'input -error': $v.rePassword.$error,
           }"
+          @blur="onInputBlur('password')"
         />
         <div v-if="$v.rePassword.$error" class="error">
           <span v-if="!$v.rePassword.required"> Field is required </span>
@@ -157,10 +185,14 @@
           </span>
         </div>
       </div>
-      <div class="flex flex-col items-center justify-center">
+      <div class="form-buttons">
         <button
           class="submit-button"
-          :disabled="submitStatus === 'PENDING'"
+          :class="{
+            'submit-button -disabled':
+              submitStatus === 'PENDING' || !submitStatus,
+          }"
+          :disabled="submitStatus === 'PENDING' || !submitStatus"
           type="submit"
           @click.prevent="submitForm"
         >
@@ -266,6 +298,9 @@ export default {
         password,
       })
     },
+    onInputBlur(value) {
+      return this.$v[value].$touch()
+    },
   },
 }
 </script>
@@ -290,6 +325,11 @@ export default {
   margin: 0.5rem 0;
   border-radius: 5px;
   cursor: pointer;
+
+  &.-disabled {
+    background: #999;
+    transition: background 0.3s ease-in-out;
+  }
 }
 
 .form-group {
@@ -301,15 +341,26 @@ export default {
     border-radius: 5px;
     margin-bottom: 1rem;
 
-    &--error {
+    &.-error {
       border: 2px solid red;
     }
   }
+
+  &.-error {
+    color: red;
+    display: flex;
+    flex-direction: column;
+  }
 }
 
-.error {
-  color: red;
+.input-group {
+  display: flex;
+}
+
+.form-buttons {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 </style>
