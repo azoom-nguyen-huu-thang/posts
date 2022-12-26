@@ -310,19 +310,25 @@ export default {
   background-color: #fff;
   padding: 2rem 0;
   min-height: 100vh;
+
+  > .register-form {
+    margin: 0 auto;
+    width: 300px;
+  }
 }
 
 .register-form {
-  width: 300px;
-  margin: 0 auto;
   border: 2px solid black;
+
+  > .form-group {
+    margin: 0.5rem 0;
+  }
 }
 
 .submit-button {
   background: #000;
   color: #fff;
   padding: 0.5rem 1rem;
-  margin: 0.5rem 0;
   border-radius: 5px;
   cursor: pointer;
 
@@ -333,10 +339,9 @@ export default {
 }
 
 .form-group {
-  margin: 0.5rem 0;
   padding: 0 2rem;
 
-  & > .input {
+  > .input {
     width: 100%;
     border-radius: 5px;
     margin-bottom: 1rem;
@@ -362,5 +367,9 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  > .submit-button {
+    margin: 0.5rem 0;
+  }
 }
 </style>
